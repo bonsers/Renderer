@@ -6,6 +6,8 @@
 
 Camera::Camera()
 {
+	m_camX = sin(m_x) * m_radius;
+	m_camZ = cos(m_x) * m_radius;
 }
 
 
@@ -17,41 +19,40 @@ Camera::~Camera()
 void Camera::input(float dt)
 {
 	//
-	// Rotate using LEFT and RIGHT keys
+	// Rotate camera around object using LEFT and RIGHT keys
 	//
-	float v = movementSpeed * dt;
+	float v = m_movementSpeed * dt;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		x = x - v;
-		camX = sin(x) * radius;
-		camZ = cos(x) * radius;
+		m_x -= v;
+		m_camX = sin(m_x) * m_radius;
+		m_camZ = cos(m_x) * m_radius;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		x = x + v;
-		camX = sin(x) * radius;
-		camZ = cos(x) * radius;
+		m_x += v;
+		m_camX = sin(m_x) * m_radius;
+		m_camZ = cos(m_x) * m_radius;
 	}
 	//
 	// Zoom in and out with + or -
 	//
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add))
 	{
-		if (zoom > 45.0f)
-			zoom = 45.0f;
-		else if (zoom < 1.0f)
-			zoom = 1.0f;
+		if (m_zoom > 45.0f)
+			m_zoom = 45.0f;
+		else if (m_zoom < 1.0f)
+			m_zoom = 1.0f;
 		else
-			zoom -= 0.05f;
+			m_zoom -= 0.05f;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
 	{
-		if (zoom > 45.0f)
-			zoom = 45.0f;
-		else if (zoom < 1.0f)
-			zoom = 1.0f;
+		if (m_zoom > 45.0f)
+			m_zoom = 45.0f;
+		else if (m_zoom < 1.0f)
+			m_zoom = 1.0f;
 		else
-			zoom += 0.05f;
+			m_zoom += 0.05f;
 	}
 }
-

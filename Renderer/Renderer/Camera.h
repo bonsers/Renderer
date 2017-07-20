@@ -9,13 +9,13 @@ public:
 	Camera();
 	~Camera();
 	void input(float dt);
+	float m_camX;
+	float m_camZ;
+	float m_zoom = 45.0f;
 
-	float x = 0.0f;
-	float radius = 10.0f;
-	float camX = sin(x) * radius;
-	float camZ = cos(x) * radius;
-	float zoom = 45.0f;
-	float movementSpeed = 1.5f;
+private:
+	float m_x = 0.0f;
+	float m_radius = 10.0f;
+	float m_movementSpeed = 1.5f;
 
 };
-

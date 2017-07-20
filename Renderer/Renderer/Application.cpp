@@ -24,17 +24,17 @@ void Application::update(Camera& camera, Shaders& shader)
 {
 	shader.use();
 
-	glm::mat4 projection = glm::perspective(glm::radians(camera.zoom), (float)800 / (float)600, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(camera.m_zoom), (float)800 / (float)600, 0.1f, 100.0f);
 	shader.setMat4("projectionMatrix", projection);
 
 	glm::mat4 view;
 	//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-	view = glm::lookAt(glm::vec3(camera.camX, 0.0f, camera.camZ),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, 1.0f, 0.0f));
+	view = glm::lookAt(	glm::vec3(camera.m_camX, 0.0f, camera.m_camZ),
+						glm::vec3(0.0f, 0.0f, 0.0f),
+						glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("viewMatrix", view);
 	// set time
-	GLfloat time = clock.getElapsedTime().asSeconds();
+	GLfloat time = m_clock.getElapsedTime().asSeconds();
 	//std::cout << time << std::endl;
 	shader.setFloat("time", time);
 	// set objectColor
@@ -48,7 +48,7 @@ void Application::update(Camera& camera, Shaders& shader)
 
 void Application::draw(Shaders& shader)
 {
-	Model modelCube(v);
+	Model modelCube(m_v);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	modelCube.bind();
 	std::vector<glm::vec3> cubePositions = {
@@ -75,13 +75,14 @@ void Application::runMainGameLoop()
 
 	glEnable(GL_DEPTH_TEST);
 
+	Camera camera;
 	// Create shader
 	//Shaders shader1("Shaders\\vertex.glsl", "Shaders\\fragment.glsl");
 	Shaders shader1("Shaders\\vertexLighting.glsl", "Shaders\\fragmentLighting.glsl");
 
 	while (display.isOpen())
 	{
-		float currentFrame = clock.getElapsedTime().asSeconds();
+		float currentFrame = m_clock.getElapsedTime().asSeconds();
 		m_deltaTime = currentFrame - m_lastFrame;
 		m_lastFrame = currentFrame;
 
@@ -97,4 +98,3 @@ void Application::runMainGameLoop()
 		display.checkForClose();
 	}
 }
-

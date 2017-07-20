@@ -17,12 +17,12 @@ public:
 	void draw(Shaders& shader);
 
 private:
-	sf::Clock clock;
+	sf::Clock m_clock;
 	float m_deltaTime = 0.0f;
 	float m_lastFrame = 0.0f;
-	Camera camera;
+	
 
-	std::vector<GLfloat> v = {
+	std::vector<GLfloat> m_v = {
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -67,4 +67,3 @@ private:
 	};
 
 };
-
