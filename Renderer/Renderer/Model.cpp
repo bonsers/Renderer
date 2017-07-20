@@ -56,8 +56,8 @@ void Model::addVBO(int dim, const std::vector<GLfloat>& data)
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(data[0]), data.data(), GL_STATIC_DRAW);
-	glVertexAttribPointer(m_vboCount, dim, GL_FLOAT, GL_FALSE, 6*sizeof(float), (GLvoid*)((m_vboCount) * dim * sizeof(float)));	// refactor this
-	//std::cout << (m_vboCount)* dim * sizeof(float) << std::endl;
+	glVertexAttribPointer(m_vboCount, dim, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (GLvoid*)((m_vboCount)* dim * sizeof(float)));	// refactor this
+																																	//std::cout << (m_vboCount)* dim * sizeof(float) << std::endl;
 	glEnableVertexAttribArray(m_vboCount++);
 	m_buffers.push_back(vbo);
 }

@@ -39,7 +39,7 @@ void Camera::input(float dt)
 	{
 		if (zoom > 45.0f)
 			zoom = 45.0f;
-		else if(zoom < 1.0f)
+		else if (zoom < 1.0f)
 			zoom = 1.0f;
 		else
 			zoom -= 0.05f;

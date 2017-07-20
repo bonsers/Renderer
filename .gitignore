@@ -2,4 +2,31 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/Renderer/.vs/Renderer/v15
+/Renderer/Renderer/Debug
 /Renderer/Debug
+<<<<<<< HEAD
+/Renderer/Renderer/glm/glm
+*.dll
+=======
+/Renderer/.vs/Renderer/v15
+/Renderer/Renderer/Debug
+/Renderer/Renderer/Renderer.vcxproj
+/Renderer/Renderer/Renderer.vcxproj.filters
+/Renderer/Renderer.sln
+/Renderer/Renderer.sln
+/Renderer/Renderer/Renderer.vcxproj
+>>>>>>> origin/master
+/Renderer/Renderer/glew32.dll
+/Renderer/Renderer/sfml-graphics-2.dll
+/Renderer/Renderer/sfml-system-2.dll
+/Renderer/Renderer/sfml-window-2.dll
+<<<<<<< HEAD
+*.vcxproj
+/Renderer/Renderer/Renderer.vcxproj
+/Renderer/Renderer/Renderer.vcxproj.filters
+*.sln
+/Renderer/Renderer.sln
+=======
+/Renderer/Renderer/glm/glm
+>>>>>>> origin/master

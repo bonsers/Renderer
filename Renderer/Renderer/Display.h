@@ -17,7 +17,7 @@ public:
 	std::unique_ptr<sf::RenderWindow> window;	// std::unique_ptr?
 
 private:
-	const int width = 800;	
+	const int width = 800;
 	const int height = 600;
 };
 

@@ -16,6 +16,6 @@ public:
 	float camZ = cos(x) * radius;
 	float zoom = 45.0f;
 	float movementSpeed = 1.5f;
-	
+
 };
 

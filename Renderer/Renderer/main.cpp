@@ -5,8 +5,6 @@
 //#include <SFML\Window.hpp>
 //#include <glm\glm.hpp>
 
-
-
 int main()
 {
 	std::cout << "HELLO CRUEL WORLD!" << std::endl;

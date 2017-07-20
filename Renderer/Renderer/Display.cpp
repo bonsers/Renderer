@@ -24,7 +24,7 @@ void Display::init()
 
 	GLenum err = glewInit();
 	//std::cout << err << std::endl;
-	glViewport(0, 0 , window->getSize().x, window->getSize().y);
+	glViewport(0, 0, window->getSize().x, window->getSize().y);
 }
 
 

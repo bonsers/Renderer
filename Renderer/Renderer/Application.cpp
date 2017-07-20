@@ -78,13 +78,13 @@ void Application::runMainGameLoop()
 	// Create shader
 	//Shaders shader1("Shaders\\vertex.glsl", "Shaders\\fragment.glsl");
 	Shaders shader1("Shaders\\vertexLighting.glsl", "Shaders\\fragmentLighting.glsl");
-	
+
 	while (display.isOpen())
 	{
 		float currentFrame = clock.getElapsedTime().asSeconds();
 		m_deltaTime = currentFrame - m_lastFrame;
 		m_lastFrame = currentFrame;
-		
+
 		display.clear();
 		display.update();
 
