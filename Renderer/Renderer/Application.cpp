@@ -4,8 +4,9 @@
 #include <iostream>
 
 Application::Application()
+	:	m_cube("Models\\cube.obj")
 {
-
+	
 }
 
 
@@ -48,7 +49,8 @@ void Application::update(Camera& camera, Shaders& shader)
 
 void Application::draw(Shaders& shader)
 {
-	Model modelCube(m_v);
+	//Model modelCube(m_v);
+	Model modelCube(m_cube.m_buffer);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	modelCube.bind();
 	std::vector<glm::vec3> cubePositions = {
@@ -79,6 +81,15 @@ void Application::runMainGameLoop()
 	// Create shader
 	//Shaders shader1("Shaders\\vertex.glsl", "Shaders\\fragment.glsl");
 	Shaders shader1("Shaders\\vertexLighting.glsl", "Shaders\\fragmentLighting.glsl");
+
+	/*for (int k = 0; k < m_cube.m_buffer.size(); k++)
+	{
+		std::cout << m_cube.m_buffer[k] << "\t";
+		if ((k + 1) % 9 == 0)
+			std::cout << "\n";
+		else if ((k + 1) % 3 == 0)
+			std::cout << "\t";
+	}*/
 
 	while (display.isOpen())
 	{

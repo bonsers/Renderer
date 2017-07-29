@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "Camera.h"
 #include "Shaders.h"
+#include "ObjLoader.h"
 
 class Application
 {
@@ -20,7 +21,6 @@ private:
 	sf::Clock m_clock;
 	float m_deltaTime = 0.0f;
 	float m_lastFrame = 0.0f;
-	
 
 	std::vector<GLfloat> m_v = {
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -66,4 +66,5 @@ private:
 		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
 
+	ObjLoader m_cube;
 };
