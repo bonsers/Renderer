@@ -9,9 +9,10 @@ GLEW 2.0.0, SFML 2.4.1 and GLM 0.9.8.4.
 ### Planned improvements:
 * Wavefront .obj loader
 * Specular lighting
+* Zoom/rotate by scroll wheel and mouse 
 
 ### Code style:
 * Local variables: camelCase
 * Member variables: m_camelCase
-* Functions: PascalCase
+* Functions: camelCase
 * .h/.cpp names: PascalCase
