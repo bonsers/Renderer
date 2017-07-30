@@ -74,7 +74,7 @@ void ObjLoader::split(std::vector<glm::vec3> &vec, std::string buf, char delim) 
 	ss.str(buf);
 	std::string elem;
 	int i = 0;
-	float x, y, z;
+	GLfloat x, y, z;
 	while (std::getline(ss, elem, delim))
 	{
 		if (elem == "v")
@@ -87,7 +87,6 @@ void ObjLoader::split(std::vector<glm::vec3> &vec, std::string buf, char delim) 
 			continue;
 		else
 		{
-			//vec.push_back(elem);
 			if (i == 0)
 				x = std::stof(elem);
 			if (i == 1)
@@ -190,7 +189,7 @@ std::vector<std::string> ObjLoader::splitByToken(std::string str, char token)
 }
 
 
-void ObjLoader::constructBuffer(std::vector<face> &faces, std::vector<glm::vec3> &vertices, std::vector<glm::vec3> &normals, std::vector<float> &buffer) // const?
+void ObjLoader::constructBuffer(std::vector<face> &faces, std::vector<glm::vec3> &vertices, std::vector<glm::vec3> &normals, std::vector<GLfloat> &buffer) // const?
 {
 	for (int i = 0; i < faces.size(); i++)
 	{

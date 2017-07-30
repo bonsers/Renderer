@@ -3,13 +3,14 @@
 #include <string>
 #include <vector>
 #include <glm\glm.hpp>
+#include <GL\glew.h>
 
 class ObjLoader
 {
 public:
 	ObjLoader(std::string path);
 	~ObjLoader();
-	std::vector<float> m_buffer;
+	std::vector<GLfloat> m_buffer;
 
 private:
 	struct interimFace
@@ -20,9 +21,9 @@ private:
 	};
 	struct attribute
 	{
-		float v;
-		float vt;
-		float vn;
+		GLfloat v;
+		GLfloat vt;
+		GLfloat vn;
 	};
 	struct face
 	{
@@ -35,7 +36,7 @@ private:
 	void splitFaces(std::vector<interimFace> &vec, std::string buf, char delim);
 	void splitFacesFurther(std::vector<interimFace> &vec, std::vector<face> &newVec);
 	std::vector<std::string> splitByToken(std::string str, char token);
-	void constructBuffer(std::vector<face> &faces, std::vector<glm::vec3> &vertices, std::vector<glm::vec3> &normals, std::vector<float> &buffer);
+	void constructBuffer(std::vector<face> &faces, std::vector<glm::vec3> &vertices, std::vector<glm::vec3> &normals, std::vector<GLfloat> &buffer);
 
 };
 
