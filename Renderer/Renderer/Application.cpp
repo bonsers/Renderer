@@ -6,7 +6,12 @@
 Application::Application()
 	:	m_cube("Models\\cube.obj")
 {
-	
+	m_entities[0].pos = glm::vec3(0.0f, 0.0f, 0.0f);
+	m_entities[0].color = glm::vec3(1.0f, 0.5f, 0.5f);
+	m_entities[1].pos = glm::vec3(2.0f, 2.0f, -4.0f);
+	m_entities[1].color = glm::vec3(0.5f, 0.5f, 1.0f);
+	m_entities[2].pos = glm::vec3(-3.0f, -1.0f, -1.0f);
+	m_entities[2].color = glm::vec3(0.5f, 1.0f, 0.5f);
 }
 
 
@@ -39,7 +44,7 @@ void Application::update(Camera& camera, Shaders& shader)
 	//std::cout << time << std::endl;
 	shader.setFloat("time", time);
 	// set objectColor
-	glm::vec3 objectColor = glm::vec3(0.5f, 1.0f, 0.5f);
+	glm::vec3 objectColor = glm::vec3(0.5f, 1.0f, 0.5f); // default color
 	shader.setVec3("objectColor", objectColor);
 	// set lightColor
 	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -53,17 +58,13 @@ void Application::draw(Shaders& shader)
 	Model modelCube(m_cube.m_buffer);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	modelCube.bind();
-	std::vector<glm::vec3> cubePositions = {
-		glm::vec3(0.0f,  0.0f,  0.0f),
-		glm::vec3(2.0f,  2.0f, -4.0f),
-		glm::vec3(-1.5f, -2.2f, -2.5f)
-	};
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < m_entities.size(); i++)
 	{
 		glm::mat4 model;
-		model = glm::translate(model, cubePositions[i]);
+		model = glm::translate(model, m_entities[i].pos);
 		shader.setMat4("modelMatrix", model);
-
+		glm::vec3 objectColor = m_entities[i].color;
+		shader.setVec3("objectColor", objectColor);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 	modelCube.unbind();
@@ -79,13 +80,12 @@ void Application::runMainGameLoop()
 
 	Camera camera;
 	// Create shader
-	//Shaders shader1("Shaders\\vertex.glsl", "Shaders\\fragment.glsl");
-	Shaders shader1("Shaders\\vertexLighting.glsl", "Shaders\\fragmentLighting.glsl");
+	Shaders shader1("Shaders\\vertex.glsl", "Shaders\\fragment.glsl");
 
 	/*for (int k = 0; k < m_cube.m_buffer.size(); k++)
 	{
 		std::cout << m_cube.m_buffer[k] << "\t";
-		if ((k + 1) % 9 == 0)
+		if ((k + 1) % 6 == 0)
 			std::cout << "\n";
 		else if ((k + 1) % 3 == 0)
 			std::cout << "\t";
