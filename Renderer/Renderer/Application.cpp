@@ -44,7 +44,7 @@ void Application::update(Camera& camera, Shaders& shader)
 	//std::cout << time << std::endl;
 	shader.setFloat("time", time);
 	// set objectColor
-	glm::vec3 objectColor = glm::vec3(0.5f, 1.0f, 0.5f); // default color
+	glm::vec3 objectColor = glm::vec3(0.7f, 0.7f, 0.7f); // default color
 	shader.setVec3("objectColor", objectColor);
 	// set lightColor
 	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -54,9 +54,38 @@ void Application::update(Camera& camera, Shaders& shader)
 
 void Application::draw(Shaders& shader)
 {
+	
+	
 	//Model modelCube(m_v);
 	Model modelCube(m_cube.m_buffer);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	
+	// DRAW GRID
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	glColor3f(.3, .3, .3);
+	glBegin(GL_QUADS);
+	glVertex3f(0, -0.001, 0);
+	glVertex3f(0, -0.001, 10);
+	glVertex3f(10, -0.001, 10);
+	glVertex3f(10, -0.001, 0);
+	glEnd();
+
+	glBegin(GL_LINES);
+	for (int i = -10; i <= 10; i++) {
+		if (i == 0) { glColor3f(.6, .3, .3); }
+		else { glColor3f(.25, .25, .25); };
+		glVertex3f(i, 0, -10);
+		glVertex3f(i, 0, 10);
+		if (i == 0) { glColor3f(.3, .3, .6); }
+		else { glColor3f(.25, .25, .25); };
+		glVertex3f(-10, 0, i);
+		glVertex3f(10, 0, i);
+	};
+	glEnd();
+	
+	// DRAW ENTITIES
+
 	modelCube.bind();
 	for (int i = 0; i < m_entities.size(); i++)
 	{
@@ -65,9 +94,11 @@ void Application::draw(Shaders& shader)
 		shader.setMat4("modelMatrix", model);
 		glm::vec3 objectColor = m_entities[i].color;
 		shader.setVec3("objectColor", objectColor);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 	modelCube.unbind();
+
 }
 
 

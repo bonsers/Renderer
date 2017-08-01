@@ -15,6 +15,15 @@ ObjLoader::ObjLoader(std::string path)
 	newVec.resize(interimFaces.size());
 	splitFacesFurther(interimFaces, newVec);
 
+	//for (int k = 0; k < vertices.size(); k++)
+	//{
+	//	std::cout << vertices[k].x << "\n";
+	//	//if ((k + 1) % 6 == 0)
+	//	//	std::cout << "\n";
+	//	//else if ((k + 1) % 3 == 0)
+	//	//	std::cout << "\t";
+	//}
+
 	//std::vector<float> m_buffer;
 	constructBuffer(newVec, vertices, normals, m_buffer);
 }
@@ -76,7 +85,7 @@ void ObjLoader::split(std::vector<glm::vec3> &vec, std::string buf, char delim) 
 	int i = 0;
 	GLfloat x, y, z;
 	while (std::getline(ss, elem, delim))
-	{
+	{	
 		if (elem == "v")
 			continue;
 		else if (elem == "vt")
