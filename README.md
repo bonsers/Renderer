@@ -1,13 +1,14 @@
 # Renderer (Work in progress)
 Simple OpenGL render engine written in C++.
 
-![rendere_2](https://user-images.githubusercontent.com/7816647/28494808-2bf6fb9e-6f31-11e7-89ef-f17cc0a6f41e.png)
+![renderer_2](https://user-images.githubusercontent.com/7816647/28494808-2bf6fb9e-6f31-11e7-89ef-f17cc0a6f41e.png)
 
 ### Dependencies:
 GLEW 2.0.0, SFML 2.4.1 and GLM 0.9.8.4.
 
 ### Planned improvements:
-* Wavefront .obj loader
+* ~~Add grid~~
+* ~~Wavefront .obj loader~~ Fix float issue in ObjLoader (some .obj files are not rendering correctly)
 * Specular lighting
 * Zoom/rotate by scroll wheel and mouse 
 
