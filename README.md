@@ -8,7 +8,7 @@ GLEW 2.0.0, SFML 2.4.1 and GLM 0.9.8.4.
 
 ### Planned improvements:
 * ~~Add grid~~
-* ~~Wavefront .obj loader~~ Fix float issue in ObjLoader (some .obj files are not rendering correctly)
+* ~~Wavefront .obj loader~~
 * Specular lighting
 * Zoom/rotate by scroll wheel and mouse 
 
