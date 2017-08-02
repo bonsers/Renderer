@@ -95,7 +95,7 @@ void Application::draw(Shaders& shader)
 		glm::vec3 objectColor = m_entities[i].color;
 		shader.setVec3("objectColor", objectColor);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDrawArrays(GL_TRIANGLES, 0, modelCube.getIndicesCount());
 	}
 	modelCube.unbind();
 

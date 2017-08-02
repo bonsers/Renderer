@@ -17,6 +17,7 @@ Model::Model(const std::vector<GLfloat>& vertexPositions, const std::vector<GLui
 }
 
 Model::Model(const std::vector<GLfloat>& vertexPositions)
+	: m_indicesCount(vertexPositions.size())
 {
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
