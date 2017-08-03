@@ -44,7 +44,7 @@ void Application::update(Camera& camera, Shaders& shader)
 	//std::cout << time << std::endl;
 	shader.setFloat("time", time);
 	// set objectColor
-	glm::vec3 objectColor = glm::vec3(0.7f, 0.7f, 0.7f); // default color
+	glm::vec3 objectColor = glm::vec3(0.6f, 0.6f, 0.6f); // default color
 	shader.setVec3("objectColor", objectColor);
 	// set lightColor
 	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -54,33 +54,20 @@ void Application::update(Camera& camera, Shaders& shader)
 
 void Application::draw(Shaders& shader)
 {
-	
-	
 	//Model modelCube(m_v);
 	Model modelCube(m_cube.m_buffer);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
 	// DRAW GRID
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	glColor3f(.3, .3, .3);
-	glBegin(GL_QUADS);
-	glVertex3f(0, -0.001, 0);
-	glVertex3f(0, -0.001, 10);
-	glVertex3f(10, -0.001, 10);
-	glVertex3f(10, -0.001, 0);
-	glEnd();
-
+	int min = -10;
+	int max = 10;
 	glBegin(GL_LINES);
-	for (int i = -10; i <= 10; i++) {
-		if (i == 0) { glColor3f(.6, .3, .3); }
-		else { glColor3f(.25, .25, .25); };
-		glVertex3f(i, 0, -10);
-		glVertex3f(i, 0, 10);
-		if (i == 0) { glColor3f(.3, .3, .6); }
-		else { glColor3f(.25, .25, .25); };
-		glVertex3f(-10, 0, i);
-		glVertex3f(10, 0, i);
+	for (int i = min; i <= max; i++) {
+		glVertex3f(i, 0, min);
+		glVertex3f(i, 0, max);
+		glVertex3f(min, 0, i);
+		glVertex3f(max, 0, i);
 	};
 	glEnd();
 	
@@ -130,7 +117,8 @@ void Application::runMainGameLoop()
 
 		display.clear();
 		display.update();
-
+		
+		display.checkForMouseWheel();
 		input(camera);
 		update(camera, shader1);
 		draw(shader1);

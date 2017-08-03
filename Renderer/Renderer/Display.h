@@ -14,6 +14,7 @@ public:
 	void update();
 	void checkForClose();
 	bool isOpen();
+	void checkForMouseWheel();
 	std::unique_ptr<sf::RenderWindow> window;	// std::unique_ptr?
 
 private:

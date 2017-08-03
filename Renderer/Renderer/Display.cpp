@@ -1,6 +1,6 @@
 #include "Display.h"
 #include <GL\glew.h>
-
+#include <iostream>
 
 
 Display::Display()
@@ -63,4 +63,17 @@ void Display::checkForClose()
 bool Display::isOpen()
 {
 	return window->isOpen();
+}
+
+
+void Display::checkForMouseWheel()
+{
+	sf::Event e;
+	while (window->pollEvent(e))
+	{
+		if (e.type == sf::Event::MouseWheelScrolled)
+		{
+			std::cout << "Scroll wheel movement: " << e.mouseWheelScroll.delta << std::endl;
+		}
+	}
 }
