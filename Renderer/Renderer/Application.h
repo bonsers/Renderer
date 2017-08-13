@@ -15,7 +15,7 @@ public:
 	void runMainGameLoop();
 	void input(Camera& camera);
 	void update(Camera& camera, Shaders& shader);
-	void draw(Shaders& shader);
+	void draw(Shaders& shader, Model& model);
 
 private:
 	sf::Clock m_clock;

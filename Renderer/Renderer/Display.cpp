@@ -47,17 +47,17 @@ void Display::update()
 }
 
 
-void Display::checkForClose()
-{
-	sf::Event e;
-	while (window->pollEvent(e))
-	{
-		if (e.type == sf::Event::Closed)
-		{
-			close();
-		}
-	}
-}
+//void Display::checkForClose()
+//{
+//	sf::Event e;
+//	while (window->pollEvent(e))
+//	{
+//		if (e.type == sf::Event::Closed)
+//		{
+//			close();
+//		}
+//	}
+//}
 
 
 bool Display::isOpen()
@@ -66,14 +66,22 @@ bool Display::isOpen()
 }
 
 
-void Display::checkForMouseWheel()
+void Display::handleEvents(Camera& camera)
 {
 	sf::Event e;
 	while (window->pollEvent(e))
 	{
-		if (e.type == sf::Event::MouseWheelScrolled)
+		switch (e.type)
 		{
-			std::cout << "Scroll wheel movement: " << e.mouseWheelScroll.delta << std::endl;
+		case sf::Event::Closed:
+			close();
+			break;
+		case sf::Event::MouseWheelScrolled:
+			//std::cout << "Scroll wheel movement: " << e.mouseWheelScroll.delta << std::endl;
+			camera.zoom(e.mouseWheelScroll.delta);
+			break;
+		default:
+			break;
 		}
 	}
 }

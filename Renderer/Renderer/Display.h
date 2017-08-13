@@ -2,6 +2,7 @@
 
 #include <SFML\Graphics.hpp>
 #include <memory>
+#include "Camera.h"
 
 class Display
 {
@@ -12,9 +13,9 @@ public:
 	void close();
 	void clear();
 	void update();
-	void checkForClose();
+	//void checkForClose();
 	bool isOpen();
-	void checkForMouseWheel();
+	void handleEvents(Camera& camera);
 	std::unique_ptr<sf::RenderWindow> window;	// std::unique_ptr?
 
 private:

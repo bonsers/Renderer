@@ -2,7 +2,7 @@
 #include <SFML\Window\Keyboard.hpp>
 #include <SFML\Graphics.hpp>
 #include <iostream>
-
+#include <SFML\Window\Mouse.hpp>
 
 Camera::Camera()
 {
@@ -55,7 +55,30 @@ void Camera::input(float dt)
 		else
 			m_zoom += 0.05f;
 	}
+}
 
 
-
+void Camera::zoom(int scrollWheelDelta)
+{
+	//
+	// Zoom in and out with mouse scroll wheel
+	//
+	if (scrollWheelDelta == 1)
+	{
+		if (m_zoom > 45.0f)
+			m_zoom = 45.0f;
+		else if (m_zoom < 1.0f)
+			m_zoom = 1.0f;
+		else
+			m_zoom -= 2.0f;
+	}
+	else if (scrollWheelDelta == -1)
+	{
+		if (m_zoom > 45.0f)
+			m_zoom = 45.0f;
+		else if (m_zoom < 1.0f)
+			m_zoom = 1.0f;
+		else
+			m_zoom += 2.0f;
+	}
 }

@@ -12,6 +12,8 @@ Application::Application()
 	m_entities[1].color = glm::vec3(0.5f, 0.5f, 1.0f);
 	m_entities[2].pos = glm::vec3(-3.0f, -1.0f, -1.0f);
 	m_entities[2].color = glm::vec3(0.5f, 1.0f, 0.5f);
+
+	
 }
 
 
@@ -52,7 +54,7 @@ void Application::update(Camera& camera, Shaders& shader)
 }
 
 
-void Application::draw(Shaders& shader)
+void Application::draw(Shaders& shader, Model& model)
 {
 	//Model modelCube(m_v);
 	Model modelCube(m_cube.m_buffer);
@@ -73,7 +75,7 @@ void Application::draw(Shaders& shader)
 	
 	// DRAW ENTITIES
 
-	modelCube.bind();
+	model.bind();
 	for (int i = 0; i < m_entities.size(); i++)
 	{
 		glm::mat4 model;
@@ -84,7 +86,7 @@ void Application::draw(Shaders& shader)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		glDrawArrays(GL_TRIANGLES, 0, modelCube.getIndicesCount());
 	}
-	modelCube.unbind();
+	model.unbind();
 
 }
 
@@ -108,6 +110,7 @@ void Application::runMainGameLoop()
 		else if ((k + 1) % 3 == 0)
 			std::cout << "\t";
 	}*/
+	Model modelCube(m_cube.m_buffer);
 
 	while (display.isOpen())
 	{
@@ -118,13 +121,9 @@ void Application::runMainGameLoop()
 		display.clear();
 		display.update();
 		
-		display.checkForMouseWheel();
+		display.handleEvents(camera);
 		input(camera);
 		update(camera, shader1);
-		draw(shader1);
-
-
-
-		display.checkForClose();
+		draw(shader1, modelCube);
 	}
 }

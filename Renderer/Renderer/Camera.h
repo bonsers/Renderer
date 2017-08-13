@@ -9,6 +9,7 @@ public:
 	Camera();
 	~Camera();
 	void input(float dt);
+	void Camera::zoom(int scrollWheelDelta);
 	float m_camX;
 	float m_camZ;
 	float m_zoom = 45.0f;
